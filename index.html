@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><3</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/emojis/1122111523318407229.webp?size=96&animated=true">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="vreemdgaan.net">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vreemdgaan.net">
+  <meta property="og:image" content="https://cdn.discordapp.com/attachments/1318013772719198240/1320859496255590430/2e4755168cecde5f4af519d088e0264c.webp">
+  <meta property="og:description" content="vreemdgaan.net">
+  <meta name="theme-color" content="#000000">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Sintony:wght@700&family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url('images/jip bio banner.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      font-family: 'Noto Sans Mono', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: none;
+      user-select: none;
+    }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      background-image: url('https://cur.cursors-4u.net/nature/images11/nat1028.gif');
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 10000;
+      transition: none;
+    }
+
+    /* Click Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 1s ease-out;
+    }
+
+    .overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .click-text {
+      color: white;
+      font-size: 2em;
+      font-family: 'Sintony', sans-serif;
+      animation: glow-pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
+                     0 0 20px rgba(255, 255, 255, 0.6);
+      }
+      50% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 
+                     0 0 10px rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    /* Profile Container with Enhanced 3D Effect */
+    .profile-container {
+      position: relative;
+      z-index: 100;
+      text-align: center;
+      padding: 35px;
+      border-radius: 20px;
+      max-width: 380px;
+      width: 90%;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+      transform-style: preserve-3d;
+      transform-origin: center center;
+    }
+
+    @keyframes glow-border {
+      0% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                    0 0 40px rgba(255, 255, 255, 0.3),
+                    inset 0 0 20px rgba(255, 255, 255, 0.1);
+      }
+      100% {
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.8),
+                    0 0 80px rgba(255, 255, 255, 0.5),
+                    inset 0 0 30px rgba(255, 255, 255, 0.15);
+      }
+    }
+
+    /* Profile Picture */
+    .profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 20px;
+      object-fit: cover;
+      transition: transform 0.1s ease-out;
+      transform: translateZ(30px);
+    }
+
+    /* Username Section */
+    .username-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      transform: translateZ(20px);
+    }
+
+    .username {
+      color: #fff;
+      font-size: 36px;
+      font-weight: 700;
+      font-family: "Josefin Sans", sans-serif;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+      animation: username-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes username-glow {
+      0%, 100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
+      }
+      50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    @keyframes textclip {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    .badge {
+      width: 28px;
+      height: 28px;
+    }
+
+    /* Description */
+    .description {
+      color: rgba(255, 255, 255, 0.9);
+      margin: 35px 0 15px 0;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      transform: translateZ(15px);
+      min-height: 22px;
+      font-family: 'Noto Sans Mono', monospace;
+    }
+
+    .description::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* Social Icons */
+    .social-icons {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin: 15px 0;
+      transform: translateZ(10px);
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 30px;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+      display: inline-block;
+      cursor: none;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.25) translateZ(10px);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+    }
+
+    /* Divider Line */
+    .divider {
+      display: none;
+    }
+
+    /* Website Link */
+    .website-link {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 14px;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+      transform: translateZ(5px);
+    }
+
+    /* Music Icon */
+    .music-icon {
+      display: none;
+    }
+
+    /* Bubble Pop Effect */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, 
+                                  rgba(255, 255, 255, 0.95), 
+                                  rgba(255, 255, 255, 0.7) 35%, 
+                                  rgba(255, 255, 255, 0.4));
+      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      pointer-events: none;
+      z-index: 9998;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                  inset -5px -5px 15px rgba(255, 255, 255, 0.2),
+                  inset 5px 5px 15px rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes bubblePop {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+    }
+
+    /* Bubble Fragments */
+    .bubble-fragment {
+      position: absolute;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Cleaner Falling Particles */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.4));
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    .spark {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 255, 255, 1);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      pointer-events: none;
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+      animation: twinkle 0.6s ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+      .profile-container {
+        padding: 25px;
+        max-width: 340px;
+      }
+      
+      .username {
+        font-size: 30px;
+      }
+      
+      .click-text {
+        font-size: 1.5em;
+      }
+
+      .music-icon {
+        font-size: 36px;
+        top: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Click Overlay -->
+  <div class="overlay" id="overlay">
+    <div class="click-text">⎛click anywhere⎞</div>
+  </div>
+
+  <!-- Music Icon -->
+  <i class="fas fa-music music-icon" id="musicIcon"></i>
+
+  <!-- Profile Container -->
+  <div class="profile-container" id="profileContainer">
+    <img src="images/8bff3c5b6bb0e90a83aec57d8aaf7eea.png" alt="Profile Picture" class="profile-picture">
+    
+    <div class="username-wrapper">
+      <h1 class="username">@</h1>
+    </div>
+    
+    <p class="description" id="typingDescription"></p>
+    
+    <ul class="social-icons">
+      <li><a href="https://discord.com/users/620187510269804554" target="_blank" title="Discord"><i class="fab fa-discord"></i></a></li>
+      <li><a href="https://www.tiktok.com/@gewoonjip013" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a></li>
+      <li><a href="https://medal.tv/u/GewoonJip013" target="_blank" title="Medal"><i class="fa-solid fa-camera"></i></a></li>
+    </ul>
+    
+    <div class="divider"></div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="media/Lil Uzi Vert - Erase Your Social [Produced By Don Cannon  Lyle LeDuff].mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Custom Cursor
+    const cursor = document.getElementById('cursor');
+    let mouseX = 0, mouseY = 0;
+
+    function updateCursor() {
+      cursor.style.left = `${mouseX}px`;
+      cursor.style.top = `${mouseY}px`;
+      requestAnimationFrame(updateCursor);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.pageX;
+      mouseY = e.pageY;
+    });
+
+    updateCursor();
+
+    // Overlay Click Handler
+    const overlay = document.getElementById('overlay');
+    const audio = document.getElementById('backgroundMusic');
+
+    overlay.addEventListener('click', () => {
+      audio.volume = 0.1;
+      audio.play().catch(e => console.log('Audio play failed:', e));
+      
+      overlay.classList.add('fade-out');
+      setTimeout(() => {
+        overlay.remove();
+      }, 1000);
+    });
+
+    // Bubble Pop Animation with Explosion
+    function createBubble(x, y) {
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      
+      const size = 12 + Math.random() * 10;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${x - size / 2}px`;
+      bubble.style.top = `${y - size / 2}px`;
+      bubble.style.animation = 'bubblePop 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+      
+      document.body.appendChild(bubble);
+      
+      // Explode into fragments after a short delay
+      setTimeout(() => {
+        createExplosion(x, y, size);
+        bubble.remove();
+      }, 200);
+    }
+
+    // Create explosion fragments
+    function createExplosion(x, y, bubbleSize) {
+      const fragmentCount = 6 + Math.floor(Math.random() * 4);
+      
+      for (let i = 0; i < fragmentCount; i++) {
+        const fragment = document.createElement('div');
+        fragment.className = 'bubble-fragment';
+        
+        const fragmentSize = 3 + Math.random() * 4;
+        fragment.style.width = `${fragmentSize}px`;
+        fragment.style.height = `${fragmentSize}px`;
+        fragment.style.left = `${x - fragmentSize / 2}px`;
+        fragment.style.top = `${y - fragmentSize / 2}px`;
+        
+        document.body.appendChild(fragment);
+        
+        // Random direction for each fragment
+        const angle = (Math.PI * 2 * i) / fragmentCount + (Math.random() - 0.5) * 0.5;
+        const velocity = 2 + Math.random() * 3;
+        let velocityX = Math.cos(angle) * velocity;
+        let velocityY = Math.sin(angle) * velocity;
+        
+        let posX = x;
+        let posY = y;
+        let opacity = 1;
+        let scale = 1;
+        
+        const animateFragment = () => {
+          velocityY += 0.15; // Gravity
+          velocityX *= 0.98; // Air resistance
+          velocityY *= 0.98;
+          
+          posX += velocityX;
+          posY += velocityY;
+          opacity -= 0.02;
+          scale -= 0.015;
+          
+          fragment.style.left = `${posX - fragmentSize / 2}px`;
+          fragment.style.top = `${posY - fragmentSize / 2}px`;
+          fragment.style.opacity = opacity;
+          fragment.style.transform = `scale(${scale})`;
+          
+          if (opacity > 0 && scale > 0) {
+            requestAnimationFrame(animateFragment);
+          } else {
+            fragment.remove();
+          }
+        };
+        
+        requestAnimationFrame(animateFragment);
+      }
+    }
+
+    // Bubble Pop Effect Removed
+
+    // Music Icon Click Removed
+
+    // Title Animation
+    const originalTitle = "Just live life.";
+    let titleIndex = 0;
+    let isTyping = true;
+    let isPaused = false;
+
+    function animateTitle() {
+      if (isPaused) return;
+      
+      if (isTyping) {
+        document.title = originalTitle.substring(0, titleIndex + 1);
+        titleIndex++;
+        
+        if (titleIndex === originalTitle.length) {
+          isTyping = false;
+          setTimeout(animateTitle, 1000);
+          return;
+        }
+      } else {
+        document.title = originalTitle.substring(0, titleIndex - 1);
+        titleIndex--;
+        
+        if (titleIndex === 0) {
+          isTyping = true;
+          isPaused = true;
+          document.title = "‎";
+          
+          setTimeout(() => {
+            isPaused = false;
+            animateTitle();
+          }, 2000);
+          return;
+        }
+      }
+      
+      setTimeout(animateTitle, 230);
+    }
+
+    window.addEventListener('load', () => {
+      document.title = "‎";
+      animateTitle();
+    });
+
+    // Typing Animation for Description
+    const descriptionElement = document.getElementById('typingDescription');
+    const descriptions = [
+      'make the best of it.',
+      'imagine losing, just cheat.'
+    ];
+    let descIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function getRandomPause() {
+      // Random pause between 2.5 and 5 seconds (2500 to 5000 milliseconds)
+      return Math.random() * (5000 - 2500) + 2500;
+    }
+
+    function typeDescription() {
+      const currentDesc = descriptions[descIndex];
+      
+      if (!isDeleting) {
+        // Typing forward
+        if (charIndex < currentDesc.length) {
+          descriptionElement.textContent = currentDesc.substring(0, charIndex + 1);
+          charIndex++;
+          setTimeout(typeDescription, 80); // Speed of typing
+        } else {
+          // Finished typing, wait before deleting
+          setTimeout(() => {
+            isDeleting = true;
+            typeDescription();
+          }, getRandomPause()); // Random pause after typing complete
+        }
+      } else {
+        // Deleting
+        if (charIndex > 0) {
+          charIndex--;
+          descriptionElement.textContent = currentDesc.substring(0, charIndex);
+          setTimeout(typeDescription, 60); // Speed of deleting
+        } else {
+          // Finished deleting, move to next description
+          descIndex = (descIndex + 1) % descriptions.length;
+          isDeleting = false;
+          setTimeout(typeDescription, 300); // Pause before typing next
+        }
+      }
+    }
+
+    typeDescription();
+
+    // Create sparks around the username
+    const usernameElement = document.querySelector('.username');
+    let sparkInterval = null;
+
+    function createSpark() {
+      const spark = document.createElement('div');
+      spark.className = 'spark';
+      
+      const rect = usernameElement.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // Random angle around the username
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 15 + Math.random() * 15;
+      
+      const startX = centerX + Math.cos(angle) * distance;
+      const startY = centerY + Math.sin(angle) * distance;
+      
+      spark.style.left = startX + 'px';
+      spark.style.top = startY + 'px';
+      
+      document.body.appendChild(spark);
+      
+      // Stars appear and disappear without spinning
+      let lifetime = 0;
+      const maxLifetime = 50;
+      
+      const animateSpark = () => {
+        lifetime++;
+        const opacity = Math.sin((lifetime / maxLifetime) * Math.PI);
+        
+        spark.style.opacity = opacity;
+        
+        if (lifetime < maxLifetime) {
+          requestAnimationFrame(animateSpark);
+        } else {
+          spark.remove();
+        }
+      };
+      
+      requestAnimationFrame(animateSpark);
+    }
+
+    
+
+    // 3D Tilt Effect Removed
+  </script>
+</body>
+</html>
