@@ -478,42 +478,6 @@
     // Disable right-click
     document.addEventListener('contextmenu', e => e.preventDefault());
 
-    // DevTools detection - multiple methods
-    (function() {
-      let devtoolsOpen = false;
-      
-      // Method 1: Check window size difference
-      const checkWindowSize = () => {
-        const widthThreshold = window.outerWidth - window.innerWidth > 160;
-        const heightThreshold = window.outerHeight - window.innerHeight > 160;
-        return widthThreshold || heightThreshold;
-      };
-      
-      // Method 2: Debugger detection
-      let checkCount = 0;
-      const devtoolCheck = () => {
-        const before = new Date();
-        debugger;
-        const after = new Date();
-        const diff = after - before;
-        
-        if (diff > 100) {
-          return true;
-        }
-        return false;
-      };
-      
-      // Run detection
-      setInterval(() => {
-        if (checkWindowSize() || devtoolCheck()) {
-          if (!devtoolsOpen) {
-            devtoolsOpen = true;
-            window.location.href = 'about:blank';
-          }
-        }
-      }, 1000);
-    })();
-
     // ============================================
     // CUSTOM TOOLTIP FOR SOCIAL ICONS
     // ============================================
