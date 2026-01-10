@@ -473,6 +473,36 @@
 
   <script>
     // ============================================
+    // DEVTOOLS PROTECTION
+    // ============================================
+    (function() {
+        // Function to "close" or redirect the page
+        function protect() {
+            window.location.href = "about:blank";
+        }
+        // 1. Detect via Debugger (The most common way)
+        // This pauses the script execution if DevTools is open
+        setInterval(function() {
+            const startTime = performance.now();
+            debugger;
+            const endTime = performance.now();
+            
+            // If it takes longer than 100ms, the debugger was active
+            if (endTime - startTime > 100) {
+                protect();
+            }
+        }, 1000);
+        // 2. Detect via Window Resizing
+        // Often, opening DevTools changes the inner window dimensions
+        window.addEventListener('resize', function() {
+            if ((window.outerHeight - window.innerHeight) > 200 || 
+                (window.outerWidth - window.innerWidth) > 200) {
+                protect();
+            }
+        });
+    })();
+
+    // ============================================
     // BASIC PROTECTION
     // ============================================
     // Disable right-click
