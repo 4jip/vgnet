@@ -19,12 +19,15 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts + Custom Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Sintony:wght@700&family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Sintony:wght@700&family=Noto+Sans+Mono&family=Orbitron:wght@900&family=Righteous&family=Bungee&family=Rubik+Mono+One&family=Bebas+Neue&family=Anton&family=Archivo+Black&family=Black+Ops+One&display=swap" rel="stylesheet">
   
   <style>
+    /* ============================================
+       GLOBAL STYLES
+       ============================================ */
     * {
       margin: 0;
       padding: 0;
@@ -43,9 +46,12 @@
       overflow-x: hidden;
       cursor: none;
       user-select: none;
+      position: relative;
     }
 
-    /* Custom Cursor */
+    /* ============================================
+       CUSTOM CURSOR
+       ============================================ */
     .custom-cursor {
       position: fixed;
       width: 32px;
@@ -56,10 +62,11 @@
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 10000;
-      transition: none;
     }
 
-    /* Click Overlay */
+    /* ============================================
+       CLICK OVERLAY
+       ============================================ */
     .overlay {
       position: fixed;
       top: 0;
@@ -82,7 +89,6 @@
     .click-text {
       color: white;
       font-size: 2em;
-      font-family: 'Sintony', sans-serif;
       animation: glow-pulse 1.5s ease-in-out infinite;
     }
 
@@ -97,7 +103,9 @@
       }
     }
 
-    /* Profile Container with Enhanced 3D Effect */
+    /* ============================================
+       PROFILE CONTAINER
+       ============================================ */
     .profile-container {
       position: relative;
       z-index: 100;
@@ -106,22 +114,6 @@
       border-radius: 20px;
       max-width: 380px;
       width: 90%;
-      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
-      transform-style: preserve-3d;
-      transform-origin: center center;
-    }
-
-    @keyframes glow-border {
-      0% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
-                    0 0 40px rgba(255, 255, 255, 0.3),
-                    inset 0 0 20px rgba(255, 255, 255, 0.1);
-      }
-      100% {
-        box-shadow: 0 0 40px rgba(255, 255, 255, 0.8),
-                    0 0 80px rgba(255, 255, 255, 0.5),
-                    inset 0 0 30px rgba(255, 255, 255, 0.15);
-      }
     }
 
     /* Profile Picture */
@@ -130,10 +122,8 @@
       height: 150px;
       border-radius: 50%;
       display: block;
-      margin: 0 auto 20px;
+      margin: 0 auto 15px;
       object-fit: cover;
-      transition: transform 0.1s ease-out;
-      transform: translateZ(30px);
     }
 
     /* Username Section */
@@ -142,8 +132,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 10px;
-      transform: translateZ(20px);
+      margin-bottom: 8px;
     }
 
     .username {
@@ -164,32 +153,43 @@
       }
     }
 
-    @keyframes textclip {
-      to {
-        background-position: 200% center;
-      }
-    }
-
     .badge {
       width: 28px;
       height: 28px;
     }
 
-    /* Description */
-    .description {
-      color: rgba(255, 255, 255, 0.9);
+    /* ============================================
+       DESCRIPTION - OPTIMIZED FOR SMOOTH TYPING
+       ============================================ */
+    .description-container {
       margin: 35px 0 15px 0;
-      font-size: 15px;
-      letter-spacing: 0.5px;
-      transform: translateZ(15px);
-      min-height: 22px;
-      font-family: 'Noto Sans Mono', monospace;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .description::after {
-      content: '|';
-      animation: blink 0.7s infinite;
+    .description {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      font-family: 'Noto Sans Mono', monospace;
+      line-height: 1.6;
+      position: relative;
+      text-align: center;
+      max-width: 100%;
+      word-break: break-word;
+      hyphens: none;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background-color: rgba(255, 255, 255, 0.9);
       margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 0.7s infinite;
     }
 
     @keyframes blink {
@@ -197,14 +197,15 @@
       51%, 100% { opacity: 0; }
     }
 
-    /* Social Icons */
+    /* ============================================
+       SOCIAL ICONS
+       ============================================ */
     .social-icons {
       list-style: none;
       display: flex;
       justify-content: center;
       gap: 25px;
       margin: 15px 0;
-      transform: translateZ(10px);
     }
 
     .social-icons a {
@@ -217,102 +218,183 @@
     }
 
     .social-icons a:hover {
-      transform: scale(1.25) translateZ(10px);
+      transform: scale(1.25);
       text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
     }
 
-    /* Divider Line */
-    .divider {
-      display: none;
-    }
-
-    /* Website Link */
-    .website-link {
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 14px;
-      margin-top: 10px;
-      letter-spacing: 0.5px;
-      transform: translateZ(5px);
-    }
-
-    /* Music Icon */
-    .music-icon {
-      display: none;
-    }
-
-    /* Bubble Pop Effect */
-    .bubble {
+    /* Custom Tooltip */
+    .tooltip {
       position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, 
-                                  rgba(255, 255, 255, 0.95), 
-                                  rgba(255, 255, 255, 0.7) 35%, 
-                                  rgba(255, 255, 255, 0.4));
-      border: 1.5px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: 'Noto Sans Mono', monospace;
       pointer-events: none;
-      z-index: 9998;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
-                  inset -5px -5px 15px rgba(255, 255, 255, 0.2),
-                  inset 5px 5px 15px rgba(255, 255, 255, 0.4);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 10001;
+      white-space: nowrap;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 
+                  inset 0 0 20px rgba(255, 255, 255, 0.05);
     }
 
-    @keyframes bubblePop {
-      0% {
-        transform: scale(0);
-        opacity: 0;
-      }
-      50% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1.1);
-        opacity: 1;
-      }
+    .tooltip.show {
+      opacity: 1;
     }
 
-    /* Bubble Fragments */
-    .bubble-fragment {
-      position: absolute;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4));
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9997;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    }
-
-    /* Cleaner Falling Particles */
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.4));
-      border-radius: 50%;
-      pointer-events: none;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-    }
-
+    /* ============================================
+       SPARK EFFECTS
+       ============================================ */
     .spark {
       position: absolute;
-      width: 3px;
-      height: 3px;
+      width: 4.5px;
+      height: 4.5px;
       background: rgba(255, 255, 255, 1);
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
       pointer-events: none;
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 5.5px rgba(255, 255, 255, 0.9);
       animation: twinkle 0.6s ease-in-out;
+      z-index: 50;
     }
 
     @keyframes twinkle {
-      0%, 100% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; }
     }
 
-    /* Responsive Design */
+    /* ============================================
+       VIEW COUNTER
+       ============================================ */
+    .view-counter {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.85);
+      font-family: 'Noto Sans Mono', monospace;
+      font-size: 14px;
+      z-index: 1000;
+    }
+
+    .view-counter i {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    .view-count {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    /* ============================================
+       DISCORD PRESENCE
+       ============================================ */
+    .discord-presence {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0 15px 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+    }
+
+    .discord-avatar {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      margin-left: 0px;
+    }
+
+    .discord-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: none;
+    }
+
+    .discord-decoration {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .discord-status {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 14px;
+      height: 14px;
+      background: #23a55a;
+      border: 2px solid rgba(0, 0, 0, 0.8);
+      border-radius: 50%;
+    }
+
+    .discord-status.idle {
+      background: #f0b232;
+    }
+
+    .discord-status.dnd {
+      background: #f23f43;
+    }
+
+    .discord-status.offline {
+      background: #80848e;
+    }
+
+    .discord-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+      flex-shrink: 0;
+    }
+
+    .discord-username {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      font-family: 'Noto Sans Mono', monospace;
+      white-space: nowrap;
+      margin-left: 57px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nitro-badge {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .discord-activity {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+      letter-spacing: 0.2px;
+      font-family: 'Noto Sans Mono', monospace;
+      white-space: nowrap;
+      margin-left: 20px;
+    }
+
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
     @media (max-width: 480px) {
       .profile-container {
         padding: 25px;
@@ -326,12 +408,6 @@
       .click-text {
         font-size: 1.5em;
       }
-
-      .music-icon {
-        font-size: 36px;
-        top: 20px;
-        right: 20px;
-      }
     }
   </style>
 </head>
@@ -341,11 +417,8 @@
 
   <!-- Click Overlay -->
   <div class="overlay" id="overlay">
-    <div class="click-text">⎛click anywhere⎞</div>
+    <div class="click-text" id="clickText">click anywhere</div>
   </div>
-
-  <!-- Music Icon -->
-  <i class="fas fa-music music-icon" id="musicIcon"></i>
 
   <!-- Profile Container -->
   <div class="profile-container" id="profileContainer">
@@ -354,16 +427,40 @@
     <div class="username-wrapper">
       <h1 class="username">@</h1>
     </div>
+
+    <!-- Discord Presence -->
+    <div class="discord-presence" id="discordPresence" style="display: none;">
+      <div class="discord-avatar">
+        <img class="discord-decoration" id="discordDecoration" src="" alt="" style="display: none;">
+        <img id="discordAvatar" src="" alt="Discord Avatar">
+        <div class="discord-status" id="discordStatus"></div>
+      </div>
+      <div class="discord-info">
+        <div class="discord-username" id="discordUsername">
+          <span id="usernameText">Loading...</span>
+          <img class="nitro-badge" src="https://cdn.discordapp.com/badge-icons/2ba85e8026a8614b640c2837bcdfe21b.png" alt="Nitro">
+        </div>
+        <div class="discord-activity" id="discordActivity">Loading...</div>
+      </div>
+    </div>
     
-    <p class="description" id="typingDescription"></p>
+    <div class="description-container">
+      <div class="description">
+        <span id="typingText"></span><span class="typing-cursor"></span>
+      </div>
+    </div>
     
     <ul class="social-icons">
-      <li><a href="https://discord.com/users/620187510269804554" target="_blank" title="Discord"><i class="fab fa-discord"></i></a></li>
-      <li><a href="https://www.tiktok.com/@gewoonjip013" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a></li>
-      <li><a href="https://medal.tv/u/GewoonJip013" target="_blank" title="Medal"><i class="fa-solid fa-camera"></i></a></li>
+      <li><a href="https://discord.com/users/620187510269804554" target="_blank" data-tooltip="Discord"><i class="fab fa-discord"></i></a></li>
+      <li><a href="https://www.tiktok.com/@gewoonjip013" target="_blank" data-tooltip="TikTok"><i class="fab fa-tiktok"></i></a></li>
+      <li><a href="https://medal.tv/u/GewoonJip013" target="_blank" data-tooltip="Medal"><i class="fa-solid fa-camera"></i></a></li>
     </ul>
-    
-    <div class="divider"></div>
+  </div>
+
+  <!-- View Counter -->
+  <div class="view-counter">
+    <i class="fas fa-eye"></i>
+    <span class="view-count" id="viewCount">0</span>
   </div>
 
   <!-- Background Music -->
@@ -372,7 +469,40 @@
   </audio>
 
   <script>
-    // Custom Cursor
+    // ============================================
+    // CUSTOM TOOLTIP FOR SOCIAL ICONS
+    // ============================================
+    const socialLinks = document.querySelectorAll('.social-icons a');
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tooltip';
+    document.body.appendChild(tooltip);
+
+    let tooltipTimeout;
+
+    socialLinks.forEach(link => {
+      link.addEventListener('mouseenter', (e) => {
+        const tooltipText = link.getAttribute('data-tooltip');
+        tooltip.textContent = tooltipText;
+        
+        tooltipTimeout = setTimeout(() => {
+          tooltip.classList.add('show');
+        }, 1000);
+      });
+
+      link.addEventListener('mousemove', (e) => {
+        tooltip.style.left = e.pageX + 15 + 'px';
+        tooltip.style.top = e.pageY + 15 + 'px';
+      });
+
+      link.addEventListener('mouseleave', () => {
+        clearTimeout(tooltipTimeout);
+        tooltip.classList.remove('show');
+      });
+    });
+
+    // ============================================
+    // CUSTOM CURSOR
+    // ============================================
     const cursor = document.getElementById('cursor');
     let mouseX = 0, mouseY = 0;
 
@@ -389,202 +519,215 @@
 
     updateCursor();
 
-    // Overlay Click Handler
+    // ============================================
+    // OVERLAY WITH FONT CYCLING (RANDOM)
+    // ============================================
     const overlay = document.getElementById('overlay');
+    const clickText = document.getElementById('clickText');
     const audio = document.getElementById('backgroundMusic');
+    
+    const fonts = [
+      'Orbitron',
+      'Righteous',
+      'Bungee',
+      'Rubik Mono One',
+      'Bebas Neue',
+      'Anton',
+      'Archivo Black',
+      'Black Ops One',
+      'Sintony'
+    ];
+    
+    function getRandomFont() {
+      const randomIndex = Math.floor(Math.random() * fonts.length);
+      return fonts[randomIndex];
+    }
+    
+    let fontCycleInterval = setInterval(() => {
+      clickText.style.fontFamily = `'${getRandomFont()}', sans-serif`;
+    }, 100);
 
     overlay.addEventListener('click', () => {
+      clearInterval(fontCycleInterval);
+      fontCycleInterval = null;
       audio.volume = 0.1;
       audio.play().catch(e => console.log('Audio play failed:', e));
       
       overlay.classList.add('fade-out');
-      setTimeout(() => {
-        overlay.remove();
-      }, 1000);
+      setTimeout(() => overlay.remove(), 1000);
     });
 
-    // Bubble Pop Animation with Explosion
-    function createBubble(x, y) {
-      const bubble = document.createElement('div');
-      bubble.className = 'bubble';
-      
-      const size = 12 + Math.random() * 10;
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${x - size / 2}px`;
-      bubble.style.top = `${y - size / 2}px`;
-      bubble.style.animation = 'bubblePop 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
-      
-      document.body.appendChild(bubble);
-      
-      // Explode into fragments after a short delay
-      setTimeout(() => {
-        createExplosion(x, y, size);
-        bubble.remove();
-      }, 200);
-    }
-
-    // Create explosion fragments
-    function createExplosion(x, y, bubbleSize) {
-      const fragmentCount = 6 + Math.floor(Math.random() * 4);
-      
-      for (let i = 0; i < fragmentCount; i++) {
-        const fragment = document.createElement('div');
-        fragment.className = 'bubble-fragment';
-        
-        const fragmentSize = 3 + Math.random() * 4;
-        fragment.style.width = `${fragmentSize}px`;
-        fragment.style.height = `${fragmentSize}px`;
-        fragment.style.left = `${x - fragmentSize / 2}px`;
-        fragment.style.top = `${y - fragmentSize / 2}px`;
-        
-        document.body.appendChild(fragment);
-        
-        // Random direction for each fragment
-        const angle = (Math.PI * 2 * i) / fragmentCount + (Math.random() - 0.5) * 0.5;
-        const velocity = 2 + Math.random() * 3;
-        let velocityX = Math.cos(angle) * velocity;
-        let velocityY = Math.sin(angle) * velocity;
-        
-        let posX = x;
-        let posY = y;
-        let opacity = 1;
-        let scale = 1;
-        
-        const animateFragment = () => {
-          velocityY += 0.15; // Gravity
-          velocityX *= 0.98; // Air resistance
-          velocityY *= 0.98;
-          
-          posX += velocityX;
-          posY += velocityY;
-          opacity -= 0.02;
-          scale -= 0.015;
-          
-          fragment.style.left = `${posX - fragmentSize / 2}px`;
-          fragment.style.top = `${posY - fragmentSize / 2}px`;
-          fragment.style.opacity = opacity;
-          fragment.style.transform = `scale(${scale})`;
-          
-          if (opacity > 0 && scale > 0) {
-            requestAnimationFrame(animateFragment);
-          } else {
-            fragment.remove();
-          }
-        };
-        
-        requestAnimationFrame(animateFragment);
-      }
-    }
-
-    // Bubble Pop Effect Removed
-
-    // Music Icon Click Removed
-
-    // Title Animation
-    const originalTitle = "Just live life.";
-    let titleIndex = 0;
-    let isTyping = true;
-    let isPaused = false;
-
-    function animateTitle() {
-      if (isPaused) return;
-      
-      if (isTyping) {
-        document.title = originalTitle.substring(0, titleIndex + 1);
-        titleIndex++;
-        
-        if (titleIndex === originalTitle.length) {
-          isTyping = false;
-          setTimeout(animateTitle, 1000);
-          return;
-        }
-      } else {
-        document.title = originalTitle.substring(0, titleIndex - 1);
-        titleIndex--;
-        
-        if (titleIndex === 0) {
-          isTyping = true;
-          isPaused = true;
-          document.title = "‎";
-          
-          setTimeout(() => {
-            isPaused = false;
-            animateTitle();
-          }, 2000);
-          return;
-        }
-      }
-      
-      setTimeout(animateTitle, 230);
-    }
-
-    window.addEventListener('load', () => {
-      document.title = "‎";
-      animateTitle();
-    });
-
-    // Typing Animation for Description
-    const descriptionElement = document.getElementById('typingDescription');
-    const descriptions = [
-      'make the best of it.',
-      'imagine losing, just cheat.'
+    // ============================================
+    // TYPING ANIMATION - COMPLETELY REWRITTEN
+    // ============================================
+    const typingTextElement = document.getElementById('typingText');
+    
+    const phrases = [
+      "Earn it.",
+      "It always seems impossible until it's done.",
+      "Don't stop until you're proud.",
+      "Smooth seas do not make skillful sailors."
     ];
-    let descIndex = 0;
+    
+    let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
+    let typingDelay = 80;
+    let deletingDelay = 50;
+    let pauseEnd = 3000;
+    let pauseStart = 500;
 
-    function getRandomPause() {
-      // Random pause between 2.5 and 5 seconds (2500 to 5000 milliseconds)
-      return Math.random() * (5000 - 2500) + 2500;
-    }
-
-    function typeDescription() {
-      const currentDesc = descriptions[descIndex];
+    function type() {
+      const currentPhrase = phrases[phraseIndex];
       
-      if (!isDeleting) {
-        // Typing forward
-        if (charIndex < currentDesc.length) {
-          descriptionElement.textContent = currentDesc.substring(0, charIndex + 1);
-          charIndex++;
-          setTimeout(typeDescription, 80); // Speed of typing
+      if (isDeleting) {
+        // Deleting characters
+        typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(type, pauseStart);
         } else {
-          // Finished typing, wait before deleting
-          setTimeout(() => {
-            isDeleting = true;
-            typeDescription();
-          }, getRandomPause()); // Random pause after typing complete
+          setTimeout(type, deletingDelay);
         }
       } else {
-        // Deleting
-        if (charIndex > 0) {
-          charIndex--;
-          descriptionElement.textContent = currentDesc.substring(0, charIndex);
-          setTimeout(typeDescription, 60); // Speed of deleting
+        // Typing characters
+        typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        
+        if (charIndex === currentPhrase.length) {
+          isDeleting = true;
+          setTimeout(type, pauseEnd);
         } else {
-          // Finished deleting, move to next description
-          descIndex = (descIndex + 1) % descriptions.length;
-          isDeleting = false;
-          setTimeout(typeDescription, 300); // Pause before typing next
+          setTimeout(type, typingDelay);
         }
       }
     }
 
-    typeDescription();
+    // Start the typing animation
+    type();
 
-    // Create sparks around the username
-    const usernameElement = document.querySelector('.username');
+    // ============================================
+    // TITLE GLITCH EFFECT
+    // ============================================
+    window.addEventListener('load', () => {
+      const titleText = "<3";
+      const glitchChars = "!@#$%^&*()_+-=[]{}|;:',.<>?/~`";
+      
+      setInterval(() => {
+        let glitched = "";
+        for (let i = 0; i < titleText.length; i++) {
+          glitched += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        }
+        document.title = glitched;
+        
+        setTimeout(() => {
+          document.title = titleText;
+        }, 100);
+      }, 400);
+    });
+
+    // ============================================
+    // DISCORD PRESENCE (USING LANYARD API)
+    // ============================================
+    async function updateDiscordPresence() {
+      try {
+        const response = await fetch('https://api.lanyard.rest/v1/users/620187510269804554');
+        
+        if (!response.ok) {
+          throw new Error('Not in Lanyard server');
+        }
+        
+        const data = await response.json();
+        
+        if (data.success && data.data) {
+          const presence = data.data;
+          const presenceElement = document.getElementById('discordPresence');
+          const avatarElement = document.getElementById('discordAvatar');
+          const decorationElement = document.getElementById('discordDecoration');
+          const usernameElement = document.getElementById('usernameText');
+          const activityElement = document.getElementById('discordActivity');
+          const statusElement = document.getElementById('discordStatus');
+          
+          presenceElement.style.display = 'flex';
+          
+          avatarElement.src = `https://cdn.discordapp.com/avatars/${presence.discord_user.id}/${presence.discord_user.avatar}.png?size=128`;
+          
+          // Set profile decoration if available
+          if (presence.discord_user.avatar_decoration_data && presence.discord_user.avatar_decoration_data.asset) {
+            decorationElement.src = `https://cdn.discordapp.com/avatar-decoration-presets/${presence.discord_user.avatar_decoration_data.asset}.png?size=96`;
+            decorationElement.style.display = 'block';
+          }
+          
+          usernameElement.textContent = presence.discord_user.username;
+          
+          statusElement.className = `discord-status ${presence.discord_status}`;
+          
+          if (presence.activities && presence.activities.length > 0) {
+            const activity = presence.activities[0];
+            if (activity.type === 0) {
+              activityElement.textContent = `Playing ${activity.name}`;
+            } else if (activity.type === 2) {
+              activityElement.textContent = `Listening to ${activity.details || activity.name}`;
+            } else if (activity.type === 3) {
+              activityElement.textContent = `Watching ${activity.name}`;
+            } else if (activity.state) {
+              activityElement.textContent = activity.state;
+            } else {
+              activityElement.textContent = activity.name || 'currently doing nothing';
+            }
+          } else {
+            activityElement.textContent = 'currently doing nothing';
+          }
+        }
+      } catch (error) {
+        console.log('Join discord.gg/lanyard to enable Discord presence');
+        document.getElementById('discordPresence').style.display = 'none';
+      }
+    }
+    
+    updateDiscordPresence();
+    setInterval(updateDiscordPresence, 10000);
+
+    // ============================================
+    // VIEW COUNTER
+    // ============================================
+    const viewCountElement = document.getElementById('viewCount');
+    const STORAGE_KEY = 'profileViewCount';
+
+    let viewCount = parseInt(localStorage.getItem(STORAGE_KEY) || '0');
+    viewCount++;
+    localStorage.setItem(STORAGE_KEY, viewCount.toString());
+    viewCountElement.textContent = viewCount;
+
+    // ============================================
+    // SPARK EFFECTS AROUND USERNAME
+    // ============================================
     let sparkInterval = null;
-
+    
+    overlay.addEventListener('click', () => {
+      setTimeout(() => {
+        sparkInterval = setInterval(createSpark, 80);
+      }, 1000);
+    });
+    
     function createSpark() {
+      const usernameElement = document.querySelector('.username');
       const spark = document.createElement('div');
       spark.className = 'spark';
+      
+      const isBlack = Math.random() < 0.25;
+      if (isBlack) {
+        spark.style.background = 'rgba(0, 0, 0, 1)';
+        spark.style.boxShadow = '0 0 4px rgba(0, 0, 0, 0.9)';
+      }
       
       const rect = usernameElement.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       
-      // Random angle around the username
       const angle = Math.random() * Math.PI * 2;
       const distance = 15 + Math.random() * 15;
       
@@ -596,14 +739,12 @@
       
       document.body.appendChild(spark);
       
-      // Stars appear and disappear without spinning
       let lifetime = 0;
       const maxLifetime = 50;
       
       const animateSpark = () => {
         lifetime++;
         const opacity = Math.sin((lifetime / maxLifetime) * Math.PI);
-        
         spark.style.opacity = opacity;
         
         if (lifetime < maxLifetime) {
@@ -615,10 +756,6 @@
       
       requestAnimationFrame(animateSpark);
     }
-
-    
-
-    // 3D Tilt Effect Removed
   </script>
 </body>
 </html>
